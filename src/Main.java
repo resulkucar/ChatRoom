@@ -9,18 +9,24 @@ public class Main {
 
     public static void main(String[] args) {
         while(true) {
-
+            Person p1 = new Person("Eric", "J", "Matson", "003054596");
+            Person p2 = new Person("Tony", "K", "Smith", "003076596");
             Scanner in = new Scanner(System.in);
             Scanner in1 = new Scanner(System.in);
             System.out.println("Please begin chat!");
             System.out.println("Current People in chat: Eric and Tony\n");
             System.out.println("Sender Name: ");
-            String S = in.nextLine();
-            if(S.equalsIgnoreCase("end"))
+            String Sender = in.nextLine();
+            if(p1.getFname().equals(Sender)){
+                Sender = p1.getFname();}
+            if(p2.getFname().equalsIgnoreCase(Sender)) {
+                Sender=p2.getFname();
+            }
+            if(Sender.equalsIgnoreCase("end"))
             {
                 System.exit(0);
             }
-            CurrentPerson = S;
+            CurrentPerson = Sender;
             System.out.println("Receiver Name: ");
             String R = in.nextLine();
             if(R.equalsIgnoreCase("end"))
@@ -33,10 +39,21 @@ public class Main {
                 question = QorM;
                 System.out.println("Text: ");
                 CurrentQuestion= in1.nextLine();
+                if(p1.getFname().equals("Eric")){
+                    p1.setQuestion(CurrentQuestion);}
+                if(p2.getFname().equalsIgnoreCase("Tony")) {
+                    p2.setQuestion(CurrentQuestion);;
+                }
             } else if (QorM.equalsIgnoreCase("message")) {
                 message = QorM;
                 System.out.println("Text: ");
                 CurrentMessage = in1.nextLine();
+                p1.setMessage(CurrentMessage);
+                if(p1.getFname().equals("Eric")){
+                    p1.setMessage(CurrentMessage);}
+                if(p2.getFname().equalsIgnoreCase("Tony")) {
+                    p2.setMessage(CurrentMessage);;
+                }
             }
             if(QorM.equalsIgnoreCase("end"))
             {
@@ -48,15 +65,15 @@ public class Main {
                 type=" asked ";
 
             if (CurrentPerson.equalsIgnoreCase("Eric")&&QorM.equalsIgnoreCase("question")) {
-                System.out.println("\n"+CurrentPerson +  type + R + ", '" +CurrentQuestion +"'\n");
+                System.out.println("\n"+Sender +  type + R + ", '" +p1.getQuestion() +"'\n");
             } else if (CurrentPerson.equalsIgnoreCase("Eric")&&QorM.equalsIgnoreCase("message")) {
-                System.out.println("\n"+CurrentPerson +  type + R + ", '" +CurrentMessage +"'\n");
+                System.out.println("\n"+Sender +  type + R + ", '" +p1.getMessage()+"'\n");
             } else if(CurrentPerson.equalsIgnoreCase("Tony")&&QorM.equalsIgnoreCase("question"))
-                System.out.println("\n" + CurrentPerson + type + R + ", '" + CurrentQuestion+"'\n");
+                System.out.println("\n" + Sender + type + R + ", '" + p2.getQuestion()+"'\n");
             else if(CurrentPerson.equalsIgnoreCase("Tony")&&QorM.equalsIgnoreCase("message"))
-                System.out.println("\n" + CurrentPerson + type + R + ", '" + CurrentMessage+"'\n");
+                System.out.println("\n" + Sender + type + R + ", '" + p2.getMessage()+"'\n");
 
-            //Person p1 = new Person(S,null,null,null);
+
         }
 
 
